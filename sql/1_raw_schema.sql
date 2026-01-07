@@ -1,0 +1,98 @@
+--- Create raw table for NYC Airbnb listings dataset
+
+DROP TABLE IF EXISTS airbnb_listings_raw;
+
+CREATE TABLE airbnb_listings_raw (
+    id                                  BIGINT,
+    listing_url                         TEXT,
+    scrape_id                           BIGINT,
+    last_scraped                        DATE,
+    source                              TEXT,
+    name                                TEXT,
+    description                         TEXT,
+    neighborhood_overview               TEXT,
+    picture_url                         TEXT,
+
+    host_id                             BIGINT,
+    host_url                            TEXT,
+    host_name                           TEXT,
+    host_since                          DATE,
+    host_location                       TEXT,
+    host_about                          TEXT,
+    host_response_time                  TEXT,
+    host_response_rate                  TEXT,   
+    host_acceptance_rate                TEXT,   
+    host_is_superhost                   BOOLEAN,
+    host_thumbnail_url                  TEXT,
+    host_picture_url                    TEXT,
+    host_neighbourhood                  TEXT,
+    host_listings_count                 INT,
+    host_total_listings_count           INT,
+    host_verifications                  TEXT,   
+    host_has_profile_pic                BOOLEAN,
+    host_identity_verified              BOOLEAN,
+
+    neighbourhood                       TEXT,
+    neighbourhood_cleansed              TEXT,
+    neighbourhood_group_cleansed        TEXT,
+    latitude                            NUMERIC(10, 7),
+    longitude                           NUMERIC(10, 7),
+
+    property_type                       TEXT,
+    room_type                           TEXT,
+    accommodates                        INT,
+    bathrooms                           NUMERIC(4, 2),
+    bathrooms_text                      TEXT,
+    bedrooms                            INT,
+    beds                                INT,
+    amenities                           TEXT,   
+
+    price                               TEXT,   
+    minimum_nights                      INT,
+    maximum_nights                      INT,
+
+    minimum_minimum_nights              INT,
+    maximum_minimum_nights              INT,
+    minimum_maximum_nights              INT,
+    maximum_maximum_nights              INT,
+    minimum_nights_avg_ntm              NUMERIC(10, 2),
+    maximum_nights_avg_ntm              NUMERIC(10, 2),
+
+    calendar_updated                    TEXT,
+    has_availability                    BOOLEAN,
+    availability_30                     INT,
+    availability_60                     INT,
+    availability_90                     INT,
+    availability_365                    INT,
+    calendar_last_scraped               DATE,
+
+    number_of_reviews                   INT,
+    number_of_reviews_ltm               INT,
+    number_of_reviews_l30d              INT,
+    first_review                        DATE,
+    last_review                         DATE,
+
+    review_scores_rating                NUMERIC(5, 2),
+    review_scores_accuracy              NUMERIC(5, 2),
+    review_scores_cleanliness           NUMERIC(5, 2),
+    review_scores_checkin               NUMERIC(5, 2),
+    review_scores_communication         NUMERIC(5, 2),
+    review_scores_location              NUMERIC(5, 2),
+    review_scores_value                 NUMERIC(5, 2),
+
+    license                             TEXT,
+    instant_bookable                    BOOLEAN,
+
+    calculated_host_listings_count                  INT,
+    calculated_host_listings_count_entire_homes     INT,
+    calculated_host_listings_count_private_rooms    INT,
+    calculated_host_listings_count_shared_rooms     INT,
+
+    reviews_per_month                   NUMERIC(10, 2)
+);
+
+-- Helpful indexes for checks/analysis
+
+CREATE INDEX IF NOT EXISTS idx_airbnb_raw_id ON airbnb_listings_raw(id);
+CREATE INDEX IF NOT EXISTS idx_airbnb_raw_host_id ON airbnb_listings_raw(host_id);
+CREATE INDEX IF NOT EXISTS idx_airbnb_raw_neighbourhood ON airbnb_listings_raw(neighbourhood_cleansed);
