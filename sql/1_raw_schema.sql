@@ -12,7 +12,6 @@ CREATE TABLE airbnb_listings_raw (
     description                         TEXT,
     neighborhood_overview               TEXT,
     picture_url                         TEXT,
-
     host_id                             BIGINT,
     host_url                            TEXT,
     host_name                           TEXT,
@@ -31,13 +30,11 @@ CREATE TABLE airbnb_listings_raw (
     host_verifications                  TEXT,   
     host_has_profile_pic                BOOLEAN,
     host_identity_verified              BOOLEAN,
-
     neighbourhood                       TEXT,
     neighbourhood_cleansed              TEXT,
     neighbourhood_group_cleansed        TEXT,
     latitude                            NUMERIC(10, 7),
     longitude                           NUMERIC(10, 7),
-
     property_type                       TEXT,
     room_type                           TEXT,
     accommodates                        INT,
@@ -46,18 +43,15 @@ CREATE TABLE airbnb_listings_raw (
     bedrooms                            INT,
     beds                                INT,
     amenities                           TEXT,   
-
     price                               TEXT,   
     minimum_nights                      INT,
     maximum_nights                      INT,
-
     minimum_minimum_nights              INT,
     maximum_minimum_nights              INT,
     minimum_maximum_nights              INT,
     maximum_maximum_nights              INT,
     minimum_nights_avg_ntm              NUMERIC(10, 2),
     maximum_nights_avg_ntm              NUMERIC(10, 2),
-
     calendar_updated                    TEXT,
     has_availability                    BOOLEAN,
     availability_30                     INT,
@@ -65,13 +59,11 @@ CREATE TABLE airbnb_listings_raw (
     availability_90                     INT,
     availability_365                    INT,
     calendar_last_scraped               DATE,
-
     number_of_reviews                   INT,
     number_of_reviews_ltm               INT,
     number_of_reviews_l30d              INT,
     first_review                        DATE,
     last_review                         DATE,
-
     review_scores_rating                NUMERIC(5, 2),
     review_scores_accuracy              NUMERIC(5, 2),
     review_scores_cleanliness           NUMERIC(5, 2),
@@ -79,15 +71,12 @@ CREATE TABLE airbnb_listings_raw (
     review_scores_communication         NUMERIC(5, 2),
     review_scores_location              NUMERIC(5, 2),
     review_scores_value                 NUMERIC(5, 2),
-
     license                             TEXT,
     instant_bookable                    BOOLEAN,
-
     calculated_host_listings_count                  INT,
     calculated_host_listings_count_entire_homes     INT,
     calculated_host_listings_count_private_rooms    INT,
     calculated_host_listings_count_shared_rooms     INT,
-
     reviews_per_month                   NUMERIC(10, 2)
 );
 

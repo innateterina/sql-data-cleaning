@@ -1,23 +1,23 @@
 -- Purpose: Run data quality checks on airbnb_listings_raw
 
--- 0) Quick row count
+-- row count
 SELECT COUNT(*) AS total_rows
 FROM airbnb_listings_raw;
 
--- 1) Check primary identifier quality
--- 1.1 Missing IDs
+-- Check primary identifier quality
+-- Missing IDs
 SELECT COUNT(*) AS missing_id
 FROM airbnb_listings_raw
 WHERE id IS NULL;
 
--- 1.2 Duplicate IDs (should be 0 for a well-formed listings table)
+-- 1.2 Duplicate IDs
 SELECT id, COUNT(*) AS cnt
 FROM airbnb_listings_raw
 GROUP BY id
 HAVING COUNT(*) > 1
 ORDER BY cnt DESC;
 
--- 2) Key field completeness (fields typically required for analysis)
+-- 2) Key field completeness 
 SELECT
   SUM(CASE WHEN host_id IS NULL THEN 1 ELSE 0 END) AS null_host_id,
   SUM(CASE WHEN neighbourhood_cleansed IS NULL OR TRIM(neighbourhood_cleansed) = '' THEN 1 ELSE 0 END) AS null_neighbourhood_cleansed,
@@ -56,7 +56,7 @@ WHERE price IS NOT NULL
   AND TRIM(price) <> ''
   AND REGEXP_REPLACE(price, '[$,]', '', 'g') !~ '^[0-9]+(\.[0-9]+)?$';
 
--- 4.3 Suspicious price outliers (requires conversion)
+-- 4.3 Suspicious price outliers 
 -- We create a safe numeric expression only where conversion is valid.
 WITH priced AS (
   SELECT
@@ -89,7 +89,7 @@ WHERE (availability_30  IS NOT NULL AND (availability_30  < 0 OR availability_30
    OR (availability_365 IS NOT NULL AND (availability_365 < 0 OR availability_365 > 365));
 
 -- 6) Category consistency checks
--- 6.1 Unexpected room_type values (quick scan)
+-- 6.1 Unexpected room_type values 
 SELECT room_type, COUNT(*) AS cnt
 FROM airbnb_listings_raw
 GROUP BY room_type

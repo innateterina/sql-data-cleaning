@@ -2,40 +2,33 @@
 
 WITH base AS (
     SELECT
-        -- Identifiers
         id,
         listing_url,
         host_id,
 
-        -- Text fields (standardize whitespace)
         NULLIF(TRIM(name), '') AS name,
         NULLIF(TRIM(property_type), '') AS property_type,
         NULLIF(TRIM(room_type), '') AS room_type,
         NULLIF(TRIM(neighbourhood_cleansed), '') AS neighbourhood_cleansed,
         NULLIF(TRIM(neighbourhood_group_cleansed), '') AS neighbourhood_group_cleansed,
 
-        -- Geo
         latitude,
         longitude,
 
-        -- Capacity
         accommodates,
         bathrooms,
         bedrooms,
         beds,
 
-        -- Nights
         minimum_nights,
         maximum_nights,
 
-        -- Availability
         has_availability,
         availability_30,
         availability_60,
         availability_90,
         availability_365,
 
-        -- Reviews
         number_of_reviews,
         first_review,
         last_review,
@@ -45,7 +38,6 @@ WITH base AS (
         review_scores_location,
         review_scores_value,
 
-        -- Raw fields we will convert
         price AS price_raw,
         host_response_rate AS host_response_rate_raw,
         host_acceptance_rate AS host_acceptance_rate_raw,
@@ -68,7 +60,6 @@ typed AS (
                 THEN NULLIF(REGEXP_REPLACE(price_raw, '[$,]', '', 'g'), '')::NUMERIC
             ELSE NULL
         END AS price_usd,
-
         -- Convert host rates like "90%" to numeric percent 90
         CASE
             WHEN host_response_rate_raw ~ '^[0-9]{1,3}%$'

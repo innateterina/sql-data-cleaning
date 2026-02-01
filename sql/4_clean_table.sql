@@ -95,12 +95,10 @@ flags AS (
             WHEN longitude < -180 OR longitude > 180 THEN 1
             ELSE 0
         END AS flag_invalid_geo,
-
         CASE
             WHEN minimum_nights IS NOT NULL AND maximum_nights IS NOT NULL AND minimum_nights > maximum_nights THEN 1
             ELSE 0
         END AS flag_invalid_nights,
-
         CASE
             WHEN (availability_30  IS NOT NULL AND (availability_30  < 0 OR availability_30  > 30))
               OR (availability_60  IS NOT NULL AND (availability_60  < 0 OR availability_60  > 60))
