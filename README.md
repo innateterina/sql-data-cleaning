@@ -45,14 +45,23 @@ The full dataset can be downloaded from Kaggle.
 ## sql-data-cleaning/
 
 ├── data/
+
 │   └── listings.csv
+
 │
+
 ├── sql/
+
 │   ├── 01_raw_schema.sql
+
 │   ├── 02_data_quality_checks.sql
+
 │   ├── 03_cleaning_steps.sql
+
 │   └── 04_clean_table.sql
+
 │
+
 └── README.md
 
 ## **Workflow**
